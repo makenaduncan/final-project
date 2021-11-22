@@ -1,6 +1,6 @@
 import sys
 from game import constants
-import raylibpy
+import pygame
 
 class OutputService:
     """Outputs the game state. The responsibility of the class of objects is to draw the game state on the terminal. 
@@ -18,52 +18,98 @@ class OutputService:
         Args:
             self (OutputService): An instance of OutputService.
         """
-        self._textures = {}
+        if not pygame.get_init():
+            pygame.init()
+        self._images_cache = {}
+        self._window = None
+        self._font = pygame.font.SysFont(None, 24)
+        self._clock = pygame.time.Clock()
 
     def open_window(self, title):
         """
         Opens a new window with the provided title.
         """
-        raylibpy.init_window(constants.MAX_X, constants.MAX_Y, title)
-        raylibpy.set_target_fps(constants.FRAME_RATE)
+        self._window = pygame.display.set_mode((constants.MAX_X, constants.MAX_Y))
+        pygame.display.set_caption(title)
+
+    def draw_image(self, x, y, image_path):
         
+        # put image in cache so we don't have to load again
+        if (image_path not in self._images_cache.keys()):
+            image = pygame.image.load(image_path)
+            self._images_cache[image_path] = image
+
+        image = self._images_cache[image_path]
+
+        self._window.blit(image, (x, y))
+
+
     def clear_screen(self):
-        """Clears the Asciimatics buffer in preparation for the next rendering.
+        self._clock.tick(30)
+        self._window.fill(constants.BACKGROUND_COLOR);
 
-        Args:
-            self (OutputService): An instance of OutputService.
-        """ 
-        raylibpy.begin_drawing()
-        raylibpy.clear_background(raylibpy.BLACK)
-
-    def draw_box(self, x, y, width, height):
+    def draw_box(self, x, y, width, height, color=(100, 100, 255)):
         """
         Draws at rectangular box with the provided specifications.
         """
-        raylibpy.draw_rectangle(x, y, width, height, raylibpy.BLUE)
+        self._draw_rectangle((x, y), width, height, color=color)
+
+    def _draw_rectangle(self, center, width : int, height: int, color : tuple = (0, 0, 0), 
+                        border_width : int = 0, border_radius : int = 0, border_top_left_radius : int = -1,
+                        border_top_right_radius : int = -1, border_bottom_left_radius : int = -1, 
+                        border_bottom_right_radius : int = -1):
+        """
+            Draw a rectangle.
+
+            Input:
+                - center: An (x, y) tuple indicating the center of the rectangle
+                - width: the width of the rectangle
+                - height: the height of the rectangle
+                - color: An RGB tuple. (0,0,0) is BLACK, and (255,255,255) is WHITE
+                        You can also pass a 4 entries tuple. the 4th entry determines opacity
+                - border_width: how many pixels you want the border to be
+                
+                - border_radius, border_..._radius: use these parameters if you want your rectangle
+                                     to have rounded corners.
+                                        + values < 1 means squared corners
+                                        + values >= 1 means rounded corners. Increase this
+                                            to increase the roundness
+        """
+        pygame.draw.rect(self._window, color, pygame.Rect(center[0] - width / 2, center[1] - height / 2, width, height),
+                        border_width, border_radius, border_top_left_radius, border_top_right_radius, border_bottom_left_radius,
+                        border_bottom_right_radius)
+   
+
 
     def draw_text(self, x, y, text, is_dark_text):
+        color = constants.COLOR_BLACK if is_dark_text else constants.COLOR_WHITE
+
+        self._draw_text(text, position=(x, y), color=color)
+
+    def _draw_text(self, text : str, font : str = None, font_size : int = 24, 
+                    color : tuple = (0, 0, 0), position : tuple = (0, 0),
+                    antialias : bool = True, position_center : bool = False):
         """
-        Outputs the provided text at the desired location.
+            Draw the input text (str).
+            Inputs:
+                - text: The text you want to draw
+                - font: The font you want to use (try to find out what's
+                        available on your system first)
+                - font_size: default is 24
+                - color: An RGB tuple. (0,0,0) is BLACK, and (255,255,255) is WHITE
+                        You can also pass a 4 entries tuple. the 4th entry determines opacity
+                - position: A tuple in the form of (x, y)
+                - antialias: Boolean. Default is True
+                - position_center: A boolean that tells whether the position given should be
+                                    the center of the text image or the top-left corner.
+                        + True: treats the position as the center of the text image
+                        + False: treats the position as the top-left corner of the text image
+
         """
-        color = raylibpy.WHITE
+        text_image = self._font.render(text, antialias, color)
+        txt_img_position = position
 
-        if is_dark_text:
-            color = raylibpy.BLACK
-
-        raylibpy.draw_text(text, x + 5, y + 5, constants.DEFAULT_FONT_SIZE, color)
-
-    def draw_image(self, x, y, image):
-        """
-        Outputs the provided image on the screen.
-        """
-        if image not in self._textures.keys():
-
-            loaded = raylibpy.load_texture(image)
-            self._textures[image] = loaded
-
-        texture = self._textures[image]
-        raylibpy.draw_texture(texture, x, y, raylibpy.WHITE)
+        self._window.blit(text_image, txt_img_position)
 
     def draw_actor(self, actor):
         """Renders the given actor's text on the screen.
@@ -81,10 +127,9 @@ class OutputService:
         if actor.has_image():
             image = actor.get_image()
             self.draw_image(x, y, image)
-            #self.draw_image(x - width / 2, y - height / 2, image)
         elif actor.has_text():
             text = actor.get_text()
-            self.draw_text(x, y, text, True)
+            self.draw_text(x, y, text, False)
         elif width > 0 and height > 0:
             self.draw_box(x, y, width, height)
         
@@ -99,9 +144,5 @@ class OutputService:
             self.draw_actor(actor)
     
     def flush_buffer(self):
-        """Renders the screen.
+        pygame.display.update()
 
-        Args:
-            self (OutputService): An instance of OutputService.
-        """ 
-        raylibpy.end_drawing()
