@@ -18,11 +18,6 @@ class Actor:
     """
 
     def __init__(self):
-        """The class constructor.
-        
-        Args:
-            self (Actor): an instance of Actor.
-        """
         self._text = ""
         self._position = Point(0, 0)
         self._velocity = Point(0, 0)

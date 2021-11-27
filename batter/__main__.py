@@ -8,11 +8,11 @@ from game.input_service import InputService
 from game.output_service import OutputService
 from game.physics_service import PhysicsService
 from game.audio_service import AudioService
+from game.box import Box
 
 # TODO: Add imports similar to the following when you create these classes
-# from game.brick import Brick
-# from game.ball import Ball
-# from game.paddle import Paddle
+# from game.artifacts import Artifacts
+# from game.detective import Detective 
 # from game.control_actors_action import ControlActorsAction
 # from game.handle_collisions_action import HandleCollisionsAction
 # from game.handle_off_screen_action import HandleOffScreenAction
@@ -23,14 +23,11 @@ def main():
     # create the cast {key: tag, value: list}
     cast = {}
 
-    cast["bricks"] = []
-    # TODO: Create bricks here and add them to the list
-
-    cast["balls"] = []
-    # TODO: Create a ball here and add it to the list
-
-    cast["paddle"] = []
-    # TODO: Create a paddle here and add it to the list
+    cast["boxes"] = []
+    boxes = []
+    box = Box()
+    boxes.append(box)
+    cast["boxes"] = boxes
 
 
     # Create the script {key: tag, value: list}
@@ -52,14 +49,14 @@ def main():
 
 
     # Start the game
-    output_service.open_window("Batter");
-    audio_service.start_audio()
-    audio_service.play_sound(constants.SOUND_START)
+    output_service.open_window("Batter")
+    # audio_service.start_audio()
+    # audio_service.play_sound(constants.SOUND_START)
     
     director = Director(cast, script)
     director.start_game()
 
-    audio_service.stop_audio()
+    # audio_service.stop_audio()
 
 if __name__ == "__main__":
     main()

@@ -13,6 +13,7 @@ DEFAULT_SQUARE_SIZE = 20
 DEFAULT_FONT_SIZE = 20
 DEFAULT_TEXT_OFFSET = 4
 
+IMAGE_BOX = os.path.join(os.getcwd(), "./batter/assets/bluebox.png")
 IMAGE_BRICK = os.path.join(os.getcwd(), "./batter/assets/brick-3.png")
 IMAGE_PADDLE = os.path.join(os.getcwd(), "./batter/assets/bat.png")
 IMAGE_BALL = os.path.join(os.getcwd(), "./batter/assets/ball.png")
@@ -30,6 +31,9 @@ BALL_DY = BALL_DX * -1
 PADDLE_X = MAX_X / 2
 PADDLE_Y = MAX_Y - 25
 
+BOX_X = MAX_X / 3
+BOX_Y = MAX_Y -450
+
 BRICK_WIDTH = 48
 BRICK_HEIGHT = 24
 
@@ -43,3 +47,5 @@ PADDLE_HEIGHT = 24
 BALL_WIDTH = 24
 BALL_HEIGHT = 24
 
+BOX_WIDTH = 38
+BOX_HEIGHT = 38
