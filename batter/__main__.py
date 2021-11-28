@@ -9,13 +9,13 @@ from game.output_service import OutputService
 from game.physics_service import PhysicsService
 from game.audio_service import AudioService
 from game.box import Box
+from game.moveActorsAction import MoveActorsAction
+from game.controlActorsAction import ControlActorsAction
 
 # from game.artifacts import Artifacts
 # from game.detective import Detective 
-# from game.control_actors_action import ControlActorsAction
 # from game.handle_collisions_action import HandleCollisionsAction
 # from game.handle_off_screen_action import HandleOffScreenAction
-# from game.move_actors_action import MoveActorsAction
 
 def main():
 
@@ -40,11 +40,13 @@ def main():
     audio_service = AudioService()
 
     draw_actors_action = DrawActorsAction(output_service)
+    moveActorsAction = MoveActorsAction()
+    controlActorsAction = ControlActorsAction(input_service)
 
     # TODO: Create additional actions here and add them to the script
 
-    script["input"] = []
-    script["update"] = []
+    script["input"] = [controlActorsAction]
+    script["update"] = [moveActorsAction]
     script["output"] = [draw_actors_action]
 
 
