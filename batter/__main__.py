@@ -10,7 +10,6 @@ from game.physics_service import PhysicsService
 from game.audio_service import AudioService
 from game.box import Box
 
-# TODO: Add imports similar to the following when you create these classes
 # from game.artifacts import Artifacts
 # from game.detective import Detective 
 # from game.control_actors_action import ControlActorsAction
@@ -30,6 +29,7 @@ def main():
     cast["boxes"] = boxes
 
     cast["artifacts"] = []
+    # Finish creating the cast 
 
     # Create the script {key: tag, value: list}
     script = {}
