@@ -52,7 +52,7 @@ def main():
 
 
     # Start the game
-    output_service.open_window("Batter")
+    output_service.open_window("Clue")
     # audio_service.start_audio()
     # audio_service.play_sound(constants.SOUND_START)
     
