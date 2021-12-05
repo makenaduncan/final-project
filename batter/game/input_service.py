@@ -59,6 +59,9 @@ class InputService:
     def is_down_pressed(self):
         return self.is_key_pressed(pygame.K_DOWN)
 
+    def is_enter_pressed(self):
+        return self.is_key_pressed(pygame.K_RETURN)
+
     def get_keys_state(self, *keys):
         """
             keys: a tuple of keys that whoever calls this function

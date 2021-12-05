@@ -71,10 +71,10 @@ def main():
     #     person.set_text(constants.P_CLUES)
     #     person.set_status(False)
     #put the code to randomly select a weapon
-    # chosen_index = random.randint(0,len(people))
-    # chosen_person = people[chosen_index]
-    # chosen_person.set_text("This is the murderer")
-    # chosen_person.set_status(True)
+    chosen_pindex = random.randint(0,len(people))
+    chosen_person = people[chosen_pindex]
+    chosen_person.set_text("This is the murderer")
+    chosen_person.set_status(True)
 
     # Finish creating the cast 
 
