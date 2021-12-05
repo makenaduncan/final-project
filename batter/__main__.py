@@ -8,12 +8,12 @@ from game.input_service import InputService
 from game.output_service import OutputService
 from game.physics_service import PhysicsService
 from game.audio_service import AudioService
-from game.box import Box
+from game.detective import Detective
+from game.weapon import Weapon
+from game.people import People
+from game.gameGenerator import GameGenerator
 from game.moveActorsAction import MoveActorsAction
 from game.controlActorsAction import ControlActorsAction
-
-# from game.artifacts import Artifacts
-# from game.detective import Detective 
 # from game.handle_collisions_action import HandleCollisionsAction
 # from game.handle_off_screen_action import HandleOffScreenAction
 
@@ -22,13 +22,12 @@ def main():
     # create the cast {key: tag, value: list}
     cast = {}
 
-    cast["boxes"] = []
-    boxes = []
-    box = Box()
-    boxes.append(box)
-    cast["boxes"] = boxes
+    gameGenerator = GameGenerator()
+    cast["boxes"]=gameGenerator.get_detective(cast)
+    cast["weapons"]= gameGenerator.get_weapons(cast)
+    cast["people"]=gameGenerator.get_people(cast)
+    print(GameGenerator)
 
-    cast["artifacts"] = []
     # Finish creating the cast 
 
     # Create the script {key: tag, value: list}
