@@ -14,11 +14,24 @@ DEFAULT_FONT_SIZE = 20
 DEFAULT_TEXT_OFFSET = 4
 
 IMAGE_PERSON = os.path.join(os.getcwd(), "./batter/assets/redbox.png")
-IMAGE_WEAPON = os.path.join(os.getcwd(), "./batter/assets/greenbox.png")
-IMAGE_DETECTIVE = os.path.join(os.getcwd(), "./batter/assets/bluebox.png")
-IMAGE_BRICK = os.path.join(os.getcwd(), "./batter/assets/brick-3.png")
-IMAGE_PADDLE = os.path.join(os.getcwd(), "./batter/assets/bat.png")
-IMAGE_BALL = os.path.join(os.getcwd(), "./batter/assets/ball.png")
+IMAGE_MUSTARD = os.path.join(os.getcwd(), "./batter/assets/mustard.jpg")
+IMAGE_PLUM = os.path.join(os.getcwd(), "./batter/assets/plum.jpg")
+IMAGE_GREEN = os.path.join(os.getcwd(), "./batter/assets/green.jpg")
+IMAGE_PEACOCK = os.path.join(os.getcwd(), "./batter/assets/peacock.jpg")
+IMAGE_SCARLET = os.path.join(os.getcwd(), "./batter/assets/scarlet.jpg")
+IMAGE_WHITE = os.path.join(os.getcwd(), "./batter/assets/white.jpg")
+
+IMAGE_WEAPON = os.path.join(os.getcwd(), "./batter/assets/weapon.jpg")
+IMAGE_KNIFE = os.path.join(os.getcwd(), "./batter/assets/knife.png")
+IMAGE_ROPE = os.path.join(os.getcwd(), "./batter/assets/rope.png")
+IMAGE_PISTOL = os.path.join(os.getcwd(), "./batter/assets/pistol.png")
+IMAGE_CANDLESTICK = os.path.join(os.getcwd(), "./batter/assets/candlestick.png")
+IMAGE_POISON = os.path.join(os.getcwd(), "./batter/assets/poison.png")
+IMAGE_AXE = os.path.join(os.getcwd(), "./batter/assets/axe.png")
+IMAGE_WRENCH = os.path.join(os.getcwd(), "./batter/assets/wrench.png")
+IMAGE_HORSESHOE = os.path.join(os.getcwd(), "./batter/assets/horseshoe.png")
+
+IMAGE_DETECTIVE = os.path.join(os.getcwd(), "./batter/assets/detective.jpg")
 
 
 W_CLUES = open(os.path.join(os.getcwd(), "./batter/game/wclues.txt")).read().splitlines
@@ -27,15 +40,6 @@ P_CLUES = open(os.path.join(os.getcwd(), "./batter/game/pclues.txt")).read().spl
 SOUND_START = os.path.join(os.getcwd(), "./batter/assets/start.wav")
 SOUND_BOUNCE = os.path.join(os.getcwd(), "./batter/assets/boing.wav")
 SOUND_OVER = os.path.join(os.getcwd(), "./batter/assets/over.wav")
-
-# BALL_X = MAX_X / 2
-# BALL_Y = MAX_Y - 125
-
-# BALL_DX = 8
-# BALL_DY = BALL_DX * -1
-
-# PADDLE_X = MAX_X / 2
-# PADDLE_Y = MAX_Y - 25
 
 DETECTIVE_X = MAX_X / 3
 DETECTIVE_Y = MAX_Y -440
@@ -46,19 +50,7 @@ WEAPON_Y = MAX_Y -375
 PEOPLE_X = MAX_X / 3
 PEOPLE_Y = MAX_Y -480
 
-# BRICK_WIDTH = 48
-# BRICK_HEIGHT = 24
-
-# BRICK_SPACE = 5
-
-# PADDLE_SPEED = 15
 BOX_SPEED = 15
-
-# PADDLE_WIDTH = 96
-# PADDLE_HEIGHT = 24
-
-# BALL_WIDTH = 24
-# BALL_HEIGHT = 24
 
 DETECTIVE_WIDTH = 38
 DETECTIVE_HEIGHT = 38

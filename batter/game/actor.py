@@ -127,5 +127,8 @@ class Actor:
     def set_status(self, status):
         self._status = status
 
+    def collision(self, collision):
+        return self.get_right_edge() > collision.get_left_edge() and self.get_bottom_edge() > collision.get_top_edge() and self.get_top_edge < collision.get_bottom_edge() and self.get_left_edge() < collision.get_right_edge()
     
+        
 

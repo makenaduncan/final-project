@@ -37,7 +37,7 @@ class AudioService:
         """
         if not pygame.get_init():
             pygame.init()
-        pygame.mixer.init()
+        
 
     def stop_audio(self):
         """

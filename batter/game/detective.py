@@ -1,6 +1,7 @@
 from game.actor import Actor
 from game import constants
 from game.point import Point
+import pygame
 
 class Detective(Actor):
     def __init__(self):
@@ -13,3 +14,8 @@ class Detective(Actor):
         y = constants.DETECTIVE_Y
         position = Point(x,y)
         self.set_position(position)
+
+        pygame.mixer.init()
+        file = "./batter/assets/spooky.mp3"
+        pygame.mixer.music.load(file)
+        pygame.mixer.music.play()

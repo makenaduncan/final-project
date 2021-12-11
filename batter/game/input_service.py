@@ -96,3 +96,6 @@ class InputService:
         """
         keys_state_dict = self.get_keys_state(key)
         return keys_state_dict[key] ^ 1
+
+    def is_guess(self):
+        return self.is_enter_pressed()
