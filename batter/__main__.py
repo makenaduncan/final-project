@@ -1,4 +1,6 @@
 import random
+from game.handleCollisionsAction import HandleCollisionsAction
+from game.game_generator import GameGenerator
 from game import constants
 from game.director import Director
 from game.actor import Actor
@@ -16,66 +18,23 @@ from game.controlActorsAction import ControlActorsAction
 # from game.handle_collisions_action import HandleCollisionsAction
 # from game.handle_off_screen_action import HandleOffScreenAction
 
+
+
 def main():
 
+    print('starting game')
     # create the cast {key: tag, value: list}
     cast = {}
 
-    boxes = []
-    box = Detective()
-    boxes.append(box)
-    cast["boxes"] = boxes
+    generator = GameGenerator()
+    cast["boxes"] = generator.get_detective()
+    cast["weapons"] = generator.get_weapons()
+    cast["people"] = generator.get_people()
 
-    weapons = []
-    knife = Weapon(constants.IMAGE_WEAPON)
-    rope = Weapon(constants.IMAGE_WEAPON)
-    pistol = Weapon(constants.IMAGE_WEAPON)
-    candlestick = Weapon(constants.IMAGE_WEAPON)  
-    poison = Weapon(constants.IMAGE_WEAPON)
-    trophy = Weapon(constants.IMAGE_WEAPON)
-    bat = Weapon(constants.IMAGE_WEAPON)
-    dumbbell = Weapon(constants.IMAGE_WEAPON)
-    weapons.append(knife)
-    weapons.append(rope)
-    weapons.append(pistol)
-    weapons.append(candlestick)
-    weapons.append(poison)
-    weapons.append(trophy)
-    weapons.append(bat)
-    weapons.append(dumbbell)
-    cast["weapons"] = weapons
-    # for weapon in weapons:
-    #     weapon.set_text(constants.W_CLUES)
-    #     weapon.set_status(False)
-    #put the code to randomly select a weapon
-    chosen_index = random.randint(0,len(weapons))
-    chosen_weapon = weapons[chosen_index]
-    chosen_weapon.set_text("this is the murder weapon")
-    chosen_weapon.set_status(True)
-
-    people = []
-    mustard = People(constants.IMAGE_PERSON)
-    plum = People(constants.IMAGE_PERSON)
-    green = People(constants.IMAGE_PERSON)
-    peacock = People(constants.IMAGE_PERSON)
-    scarlet = People(constants.IMAGE_PERSON)
-    white = People(constants.IMAGE_PERSON)
-    people.append(mustard)
-    people.append(plum)
-    people.append(green)
-    people.append(peacock)
-    people.append(scarlet)
-    people.append(white)
-    cast["people"] = people
-    # for person in people:
-    #     person.set_text(constants.P_CLUES)
-    #     person.set_status(False)
-    #put the code to randomly select a weapon
-    chosen_pindex = random.randint(0,len(people))
-    chosen_person = people[chosen_pindex]
-    chosen_person.set_text("This is the murderer")
-    chosen_person.set_status(True)
-
+    # for box in cast["boxes"]: 
+    #     for box2 in cast["boxes"]:
+    #         if box.collision(box2):
+    
     # Finish creating the cast 
 
     # Create the script {key: tag, value: list}
@@ -89,13 +48,13 @@ def main():
     draw_actors_action = DrawActorsAction(output_service)
     moveActorsAction = MoveActorsAction()
     controlActorsAction = ControlActorsAction(input_service)
+    handleCollisionsAction = HandleCollisionsAction(physics_service)
 
     # TODO: Create additional actions here and add them to the script
 
     script["input"] = [controlActorsAction]
     script["update"] = [moveActorsAction]
     script["output"] = [draw_actors_action]
-
 
 
     # Start the game
@@ -110,3 +69,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+#NOTES
+#create a marquee that displays the hints at the top of the screen rather than
+#trying to display the hints on top of each individual object 
