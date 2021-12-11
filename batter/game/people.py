@@ -2,6 +2,7 @@ import random
 from game.actor import Actor
 from game import constants
 from game.point import Point
+from game import grid
 
 class People(Actor):
     def __init__(self, image_path):
@@ -16,7 +17,9 @@ class People(Actor):
         # position = Point(x,y)
         # self.set_position(position)
 
-        x = random.randint(0, constants.MAX_X - 1)
-        y = random.randint(1, constants.MAX_Y - 1)
-        position = Point(x, y)
+        x = random.randint(0, constants.MAX_X - constants.PERSON_WIDTH)
+        y = random.randint(1, constants.MAX_Y - constants.PERSON_HEIGHT)
+        # position = Point(x, y)
+        pos = grid.POSITION.next()
+        position = Point(pos[0], pos[1])
         self.set_position(position)
