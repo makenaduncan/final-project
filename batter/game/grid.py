@@ -1,5 +1,7 @@
 import random
 
+# This class helps it so that none of the people or weapons touch each other or leave the screen
+
 class Position:
     positions = []
     def __init__(self):

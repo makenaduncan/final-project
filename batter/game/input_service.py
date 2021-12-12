@@ -1,5 +1,6 @@
 import sys
 from game.point import Point
+from game.game_generator import GameGenerator
 import pygame
 
 class InputService:
@@ -62,6 +63,9 @@ class InputService:
     def is_enter_pressed(self):
         return self.is_key_pressed(pygame.K_RETURN)
 
+    def is_guess_pressed(self):
+        return self.is_key_pressed(pygame.K_g)
+
     def get_keys_state(self, *keys):
         """
             keys: a tuple of keys that whoever calls this function
@@ -97,5 +101,10 @@ class InputService:
         keys_state_dict = self.get_keys_state(key)
         return keys_state_dict[key] ^ 1
 
-    def is_guess(self):
+    def is_hint(self):
         return self.is_enter_pressed()
+
+    # def is_guess(self):
+    #     return self.is_guess_pressed()
+
+    

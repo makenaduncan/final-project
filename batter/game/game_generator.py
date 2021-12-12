@@ -25,14 +25,14 @@ class GameGenerator():
         wrench = Weapon(constants.IMAGE_WRENCH)
         horseshoe = Weapon(constants.IMAGE_HORSESHOE)
 
-        knife.set_text("clue 1")
-        rope.set_text("clue 2")
-        pistol.set_text("clue 3")
-        candlestick.set_text("clue 4")
-        poison.set_text("clue 5")
-        axe.set_text("clue 6")
-        wrench.set_text("clue 7")
-        horseshoe.set_text("clue 8")
+        knife.set_text("knife")
+        rope.set_text("rope")
+        pistol.set_text("pistol")
+        candlestick.set_text("candlestick")
+        poison.set_text("poison")
+        axe.set_text("axe")
+        wrench.set_text("wrench")
+        horseshoe.set_text("horseshoe")
 
         weapons.append(knife)
         weapons.append(rope)
@@ -47,11 +47,14 @@ class GameGenerator():
         #     #weapon.set_text(constants.W_CLUES)
         #     weapon.set_status(False)
 
-        #put the code to randomly select a weapon
-        # chosen_index = random.randint(0,len(weapons))
-        # chosen_weapon = weapons[chosen_index]
-        # chosen_weapon.set_text("this is the murder weapon")
-        # chosen_weapon.set_status(True)
+        # put the code to randomly select a weapon
+        chosen_index = random.randint(0,len(weapons) -1)
+        chosen_weapon = weapons[chosen_index]
+        chosen_weapon.set_text("this is the murder weapon")
+        chosen_weapon.set_status(True)
+
+
+
         return weapons
 
     def get_people(self):
@@ -63,12 +66,12 @@ class GameGenerator():
         scarlet = People(constants.IMAGE_SCARLET)
         white = People(constants.IMAGE_WHITE)
 
-        mustard.set_text("mustard")
-        plum.set_text("plum")
-        green.set_text("green")
-        peacock.set_text("peacock")
-        scarlet.set_text("scarlet")
-        white.set_text("white")
+        mustard.set_text("I was cooking dinner when I heard a loud crash")
+        plum.set_text("5 + 6 does not equal 3")
+        green.set_text("I've always wanted a bright yellow tuxedo")
+        peacock.set_text("I am always up for a game of cards")
+        scarlet.set_text("This isn't really my seen")
+        white.set_text("How was I suppose to know that someone was going to die?")
 
         people.append(mustard)
         people.append(plum)
@@ -84,10 +87,10 @@ class GameGenerator():
         #     person.set_status(False)
 
         #put the code to randomly select a weapon
-        # chosen_pindex = random.randint(0,len(people)-1)
-        # chosen_person = people[chosen_pindex]
-        # chosen_person.set_text("This is the murderer")
-        # chosen_person.set_status(True)
+        chosen_pindex = random.randint(0,len(people)-1)
+        chosen_person = people[chosen_pindex]
+        chosen_person.set_text("This is the murderer")
+        chosen_person.set_status(True)
 
         # add a marquee to diplay the hints
 
